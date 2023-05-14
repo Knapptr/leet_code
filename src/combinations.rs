@@ -1,0 +1,51 @@
+// Given two integers n and k, return all possible combinations of k numbers chosen from the range [1, n].
+
+// You may return the answer in any order.
+//
+fn combine(n: i32, k: i32) -> Vec<Vec<i32>> {
+    let mut sol = Vec::new();
+    let mut sols = Vec::new();
+    backtrack(1, n, k, &mut sol, &mut sols);
+    sols
+}
+
+fn backtrack(curr_n: i32, target: i32, k: i32, sol: &mut Vec<i32>, sols: &mut Vec<Vec<i32>>) {
+    if sol.len() == k as usize {
+        sols.push(sol.to_vec());
+        return;
+    }
+    for n in curr_n..=target {
+        sol.push(n);
+        backtrack(n + 1, target, k, sol, sols);
+        sol.pop();
+    }
+}
+
+#[cfg(test)]
+#[test]
+fn simple() {
+    // [1,2]
+    let n = 2;
+    let k = 2;
+
+    let expected = vec![vec![1, 2]];
+
+    assert_eq!(combine(n, k), expected);
+}
+
+#[test]
+fn more_complex() {
+    // [1,2,3,4]
+    let n = 4;
+    let k = 2;
+    let expected = vec![
+        vec![1, 2],
+        vec![1, 3],
+        vec![1, 4],
+        vec![2, 3],
+        vec![2, 4],
+        vec![3, 4],
+    ];
+
+    assert_eq!(combine(n, k), expected);
+}
