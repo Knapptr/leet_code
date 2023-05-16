@@ -115,18 +115,6 @@ fn case_one() {
 #[test]
 fn case_two() {
     let turned_on = 9;
-    let expected = vec![
-        "0:01".to_string(),
-        "0:02".to_string(),
-        "0:04".to_string(),
-        "0:08".to_string(),
-        "0:16".to_string(),
-        "0:32".to_string(),
-        "1:00".to_string(),
-        "2:00".to_string(),
-        "4:00".to_string(),
-        "8:00".to_string(),
-    ];
 
-    assert_eq!(binary_watch(turned_on).len(), expected.len());
+    assert_eq!(binary_watch(turned_on).len(), 0);
 }
