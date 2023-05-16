@@ -121,11 +121,6 @@ fn case_one() {
 #[test]
 fn case_two() {
     let turned_on = 9;
-<<<<<<< HEAD
-
-    assert_eq!(binary_watch(turned_on).len(), 0);
-=======
-
     assert_eq!(binary_watch(turned_on).len(), 0);
 }
 
@@ -188,5 +183,4 @@ fn case_three() {
     println!("{}", result.len() - expected.len());
 
     assert_eq!(result, expected);
->>>>>>> c13c95a (Adds solutions)
 }
