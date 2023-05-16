@@ -36,7 +36,7 @@ fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     // check next of current_node
     while current.next.is_some() {
         while current.next.as_ref().unwrap().val == current.val {
-            let n = current.next.as_mut().take().unwrap();
+            let n = current.next.as_mut().take();
             prec.next = *n;
             current = prec.next.as_mut().unwrap();
         }
