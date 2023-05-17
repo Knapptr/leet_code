@@ -21,35 +21,35 @@ impl ListNode {
 }
 
 fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    // create dummy head
-    // set dummy head as predec
-    let mut dummy = Box::new(ListNode {
+    if head.is_none() {
+        return head;
+    }
+
+    let mut dummy_head = ListNode {
         val: -1,
         next: head,
-    });
-    let mut prec = &mut dummy;
-    // set current node to predec.next if it has one
-    if prec.next.is_none() {
-        return None;
-    }
-    let mut current = prec.next.as_ref().unwrap();
-    // check next of current_node
-    while current.next.is_some() {
-        while current.next.as_ref().unwrap().val == current.val {
-            let n = current.next.as_mut().take().unwrap();
-            prec.next = *n;
-            current = prec.next.as_mut().unwrap();
+    };
+
+    let mut prec = &mut dummy_head;
+
+    while let Some(mut current) = prec.next.as_mut() {
+        if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+            while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+                current = current.next.as_mut().unwrap();
+            }
+            prec.next = current.next.take();
+        } else {
+            prec = prec.next.as_mut().unwrap();
         }
-        // if values !=, move predec to pred.next
-        prec = prec.next.as_mut().unwrap();
     }
-    dummy.next
+
+    dummy_head.next
 }
 
 #[cfg(test)]
 #[test]
 fn example_one() {
-    let nums = ListNode::from_vec(vec![1, 2, 3, 3, 4, 5]);
+    let nums = ListNode::from_vec(vec![1, 2, 3, 3, 4, 4, 5]);
     let expected = Box::new(ListNode::from_vec(vec![1, 2, 5]));
 
     assert_eq!(delete_duplicates(Some(Box::new(nums))).unwrap(), expected);
