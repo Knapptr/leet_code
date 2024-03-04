@@ -12,6 +12,7 @@ mod matrix_01;
 mod merge_two_bin_trees;
 mod middle_linked_list;
 mod pascal;
+mod path_sum;
 mod permutation_in_a_string;
 mod permutations;
 mod remove_duplicates;

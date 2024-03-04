@@ -28,28 +28,48 @@ fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         next: head,
     });
     let mut prec = &mut dummy;
-    // set current node to predec.next if it has one
-    if prec.next.is_none() {
-        return None;
-    }
-    let mut current = prec.next.as_ref().unwrap();
-    // check next of current_node
-    while current.next.is_some() {
-        while current.next.as_ref().unwrap().val == current.val {
-            let n = current.next.as_mut().take();
-            prec.next = *n;
-            current = prec.next.as_mut().unwrap();
+    // handle a case where the head is None
+    // current pointer is one in front of prec
+
+    // A 'loop' version
+    loop {
+        if prec.next.is_none() {
+            break;
         }
-        // if values !=, move predec to pred.next
-        prec = prec.next.as_mut().unwrap();
+        let current = prec.next.as_mut().unwrap();
+        if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+            while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+                *current = current.next.take().unwrap();
+            }
+            //skip dups
+            prec.next = current.next.take();
+        } else {
+            prec = prec.next.as_mut().unwrap();
+        }
     }
+    // A nice while let version
+    // while let Some(mut current) = prec.next.as_mut() {
+    //     // check if current has a next
+    //     // check the value of the current.next and see if it is equal to current
+    //     if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+    //         // move current forward until current.next is not equal to current
+    //         while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+    //             current = current.next.as_mut().unwrap();
+    //         }
+    //         // remove elements in list by setting the preceding to the next of the current (which
+    //         // has skipped all dups)
+    //         prec.next = current.next.take();
+    //     } else {
+    //         prec = prec.next.as_mut().unwrap();
+    //     }
+    // }
     dummy.next
 }
 
 #[cfg(test)]
 #[test]
 fn example_one() {
-    let nums = ListNode::from_vec(vec![1, 2, 3, 3, 4, 5]);
+    let nums = ListNode::from_vec(vec![1, 2, 3, 3, 4, 4, 5]);
     let expected = Box::new(ListNode::from_vec(vec![1, 2, 5]));
 
     assert_eq!(delete_duplicates(Some(Box::new(nums))).unwrap(), expected);
