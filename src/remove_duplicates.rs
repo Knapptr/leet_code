@@ -21,9 +21,11 @@ impl ListNode {
 }
 
 fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    // create dummy head
-    // set dummy head as predec
-    let mut dummy = Box::new(ListNode {
+    if head.is_none() {
+        return head;
+    }
+
+    let mut dummy_head = ListNode {
         val: -1,
         next: head,
     });
@@ -42,6 +44,14 @@ fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
                 *current = current.next.take().unwrap();
             }
             //skip dups
+
+    let mut prec = &mut dummy_head;
+
+    while let Some(mut current) = prec.next.as_mut() {
+        if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+            while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+                current = current.next.as_mut().unwrap();
+            }
             prec.next = current.next.take();
         } else {
             prec = prec.next.as_mut().unwrap();
@@ -64,6 +74,8 @@ fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     //     }
     // }
     dummy.next
+
+    dummy_head.next
 }
 
 #[cfg(test)]
