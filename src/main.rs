@@ -12,6 +12,7 @@ mod longest_non_repeating_substring;
 mod matrix_01;
 mod max_twin_sum;
 mod merge_two_bin_trees;
+mod merge_two_sorted_lists;
 mod middle_linked_list;
 mod pascal;
 mod path_sum;

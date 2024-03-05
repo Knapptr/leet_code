@@ -21,61 +21,62 @@ impl ListNode {
 }
 
 fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    if head.is_none() {
-        return head;
-    }
+    todo!()
+    // if head.is_none() {
+    //     return head;
+    // }
 
-    let mut dummy_head = ListNode {
-        val: -1,
-        next: head,
-    });
-    let mut prec = &mut dummy;
+    // let mut dummy_head = ListNode {
+    //     val: -1,
+    //     next: head,
+    // };
+    // let mut prec = &mut dummy_head;
     // handle a case where the head is None
     // current pointer is one in front of prec
 
     // A 'loop' version
-    loop {
-        if prec.next.is_none() {
-            break;
-        }
-        let current = prec.next.as_mut().unwrap();
-        if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
-            while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
-                *current = current.next.take().unwrap();
-            }
-            //skip dups
+    // loop {
+    //if prec.next.is_none() {
+    //    todo!()
+    //}
+    //let current = prec.next.as_mut().unwrap();
+    //if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+    //    while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+    //        *current = current.next.take().unwrap();
+    //    }
+    //    //skip dups
+    //}
 
-    let mut prec = &mut dummy_head;
+    //let mut prec = &mut dummy_head;
 
-    while let Some(mut current) = prec.next.as_mut() {
-        if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
-            while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
-                current = current.next.as_mut().unwrap();
-            }
-            prec.next = current.next.take();
-        } else {
-            prec = prec.next.as_mut().unwrap();
-        }
-    }
-    // A nice while let version
-    // while let Some(mut current) = prec.next.as_mut() {
-    //     // check if current has a next
-    //     // check the value of the current.next and see if it is equal to current
-    //     if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
-    //         // move current forward until current.next is not equal to current
-    //         while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
-    //             current = current.next.as_mut().unwrap();
-    //         }
-    //         // remove elements in list by setting the preceding to the next of the current (which
-    //         // has skipped all dups)
-    //         prec.next = current.next.take();
-    //     } else {
-    //         prec = prec.next.as_mut().unwrap();
-    //     }
+    //while let Some(mut current) = prec.next.as_mut() {
+    //    if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+    //        while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+    //            current = current.next.as_mut().unwrap();
+    //        }
+    //        prec.next = current.next.take();
+    //    } else {
+    //        prec = prec.next.as_mut().unwrap();
+    //    }
+    //    // A nice while let version
+    //    // while let Some(mut current) = prec.next.as_mut() {
+    //    //     // check if current has a next
+    //    //     // check the value of the current.next and see if it is equal to current
+    //    //     if current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+    //    //         // move current forward until current.next is not equal to current
+    //    //         while current.next.is_some() && current.next.as_ref().unwrap().val == current.val {
+    //    //             current = current.next.as_mut().unwrap();
+    //    //         }
+    //    //         // remove elements in list by setting the preceding to the next of the current (which
+    //    //         // has skipped all dups)
+    //    //         prec.next = current.next.take();
+    //    //     } else {
+    //    //         prec = prec.next.as_mut().unwrap();
+    //    //     }
+    //    // }
+    //    todo!()
+    //}
     // }
-    dummy.next
-
-    dummy_head.next
 }
 
 #[cfg(test)]

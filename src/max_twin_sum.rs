@@ -27,7 +27,7 @@ impl ListNode {
 }
 
 fn pair_sum(head: Option<Box<ListNode>>) -> i32 {
-    //
+    todo!()
 }
 
 #[cfg(test)]
